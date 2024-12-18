@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #fff;
+            --featured-col: #003366;
+            --col: #fff;
+        }
+
+        button {
+            outline: none;
+            border: none;
+        }
+
+        body {
+            margin-top: -55px;
+            padding: 0;
+            background: var(--bg);
+            user-select: none;
+            margin-bottom: -55px;
+        }
+
+        .container {
+            margin-block: 65px;
+            display: flex;
+            flex-direction: column;
+            padding: 7px;
+            gap: 13px;
+        }
+
+        .container button {
+            border: 3px solid var(--featured-col);
+            border-radius: 10px;
+            height: auto;
+            color: #000;
+            font-size: 17px;
+            outline: none;
+            padding: 10px;
+            font-weight: 500;
+        }
+
+        button #top {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        button img {
+            height: 70px;
+        }
+
+        button h5 {
+            margin: 0;
+            color: #000;
+            font-weight: 800;
+        }
+
+        button #info {
+            background: #003366;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        button #bottom {
+            direction: rtl;
+            margin-top: 10px;
+        }
+
+        button #bottom i {
+            padding: 5px;
+        }
+
+        button #bottom #inside {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button>
+            <div id="top">
+                <span><img src="https://imgs.ysscores.com/teams/128/5451709821991.png"><h5>باتشوكا</h5></span>
+                <span id="info">19:00 PM</span>
+                <span><img src="https://imgs.ysscores.com/teams/128/1871690196746.png"><h5>ريال مدريد</h5></span>
+            </div>
+            <div id="bottom">
+                <span id="league"><i class="fa-solid fa-trophy"></i>كأس القارات للأندية</span>
+                <article id="inside">
+                    <span><i class="fa-solid fa-tv"></i>beIN SPORTS</span>
+                    <span><i class="fa-solid fa-microphone"></i>حفيظ الدراجي</span>
+                </article>
+            </div>
+        </button>
+
+        <button>
+            <div id="top">
+                <span><img src="https://imgs.ysscores.com/teams/128/6121690118883.png"><h5>كريستال بالاس</h5></span>
+                <span id="info">20:30 PM</span>
+                <span><img src="https://imgs.ysscores.com/teams/128/1701690118820.png"><h5>أرسنال</h5></span>
+            </div>
+            <div id="bottom">
+                <span id="league"><i class="fa-solid fa-trophy"></i>كأس الرابطة الإنجليزية</span>
+                <article id="inside">
+                    <span><i class="fa-solid fa-tv"></i>beIN SPORTS 4</span>
+                    <span><i class="fa-solid fa-microphone"></i>محمد بركات</span>
+                </article>
+            </div>
+        </button>
+
+        <button>
+            <div id="top">
+                <span><img src="https://imgs.ysscores.com/teams/128/4081724601375.png"><h5>ليفربول</h5></span>
+                <span id="info">21:00 PM</span>
+                <span><img src="https://imgs.ysscores.com/teams/128/3521690370525.png"><h5>ساوثهامبتون</h5></span>
+            </div>
+            <div id="bottom">
+                <span id="league"><i class="fa-solid fa-trophy"></i>كأس الرابطة الإنجليزية</span>
+                <article id="inside">
+                    <span><i class="fa-solid fa-tv"></i>beIN SPORTS 2</span>
+                    <span><i class="fa-solid fa-microphone"></i>علي محمد علي</span>
+                </article>
+            </div>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // توقيت المباريات (UTC)
+            const matches = [
+                { id: 1, timeUTC: "19:00", utcOffset: "+00:00" },
+                { id: 2, timeUTC: "20:30", utcOffset: "+00:00" },
+                { id: 3, timeUTC: "21:00", utcOffset: "+00:00" },
+            ];
+
+            // تحويل التوقيت وعرضه
+            matches.forEach((match, index) => {
+                const matchTime = new Date(`1970-01-01T${match.timeUTC}:00${match.utcOffset}`);
+                const localTime = matchTime.toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                });
+
+                // تحديث العنصر بالتوقيت المحلي
+                document.querySelectorAll("#info")[index].innerText = localTime;
+            });
+        });
+    </script>
+</body>
+</html>
